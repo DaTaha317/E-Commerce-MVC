@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce_MVC.Models
 {
@@ -15,8 +16,11 @@ namespace E_Commerce_MVC.Models
         public string Country { get; set; }
         public string ZipCode { get; set; }
         public ShipmentStatus Status { get; set; }
+        [ForeignKey("Customer")]
         public int? CustomerId { get; set; }
-        
 
+        public virtual Customer Customer { get; set; }
+
+        public virtual List<Order> Orders { get; set; } = new List<Order>();
     }
 }

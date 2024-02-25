@@ -10,7 +10,10 @@ namespace E_Commerce_MVC.Models
 
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }
+        [ForeignKey("Customer")]
         public int? CustomerId { get; set; }
+
+        public virtual Customer Customer { get; set; }
 
     }
 }
