@@ -8,17 +8,18 @@ namespace E_Commerce_MVC.Models
         public DateTime Date { set; get; }
         [Column(TypeName ="money")]
         public decimal Price { set; get; }
-        //[ForeignKey("customer")]
+        [ForeignKey("customer")]
         public int? CustomerId { set; get; }
-        //[ForeignKey("payment")]
+        [ForeignKey("payment")]
         public int? PaymentId { set; get; }
-        //[ForeignKey("customer")]
+        [ForeignKey("shipment")]
         public int? ShipmentId { set; get; }
 
         // Navigation Properties
-        //public virtual Shipment shipm  { set; get; }
-        //public virtual Payment payment  { set; get; }
-        //public virtual Customer customer  { set; get; }
-        public virtual List<OrderItem> OrderItems { set; get; }=new List<OrderItem>();
+        public virtual Shipment shipment  { set; get; }
+        public virtual Payment payment  { set; get; }
+        public virtual Customer customer { set; get; }
+
+        public virtual List<OrderItem> orderItems { set; get; } = new List<OrderItem>();
     }
 }

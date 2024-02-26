@@ -2,20 +2,23 @@
 
 namespace E_Commerce_MVC.Models
 {
-    public class Payment
+    public class CartItem
     {
-        public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string Method { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal Amount { get; set; }
+        public int Id { get; set; }
+
+        public int Quantity { get; set; }
+
         [ForeignKey("customer")]
         public int? CustomerId { get; set; }
 
+        [ForeignKey("product")]
+        public int? ProductId { get; set; }
+
         // Navigation Properties
         public virtual Customer customer { get; set; }
-        public virtual List<Order> orders { get; set; } = new List<Order>();
+
+        public virtual Product product { get; set; }
 
     }
 }
