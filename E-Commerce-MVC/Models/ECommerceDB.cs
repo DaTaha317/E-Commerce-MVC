@@ -40,6 +40,9 @@ namespace E_Commerce_MVC.Models
                 o.OrderId
             });
 
+            // Unique attribute for Customer Email & Phone number
+            modelBuilder.Entity<Customer>().HasIndex(c => c.Email).IsUnique();
+            modelBuilder.Entity<Customer>().HasIndex(c => c.PhoneNumber).IsUnique();
 
             base.OnModelCreating(modelBuilder);
         }
