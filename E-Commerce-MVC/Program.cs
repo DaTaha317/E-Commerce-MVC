@@ -1,3 +1,6 @@
+using E_Commerce_MVC.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace E_Commerce_MVC
 {
     public class Program
@@ -8,6 +11,12 @@ namespace E_Commerce_MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // IoC container Registerations
+            builder.Services.AddDbContext<ECommerceDB>(options => 
+                options.UseLazyLoadingProxies()
+                .UseSqlServer(builder.Configuration.GetConnectionString("cs"))
+            );
 
             var app = builder.Build();
 

@@ -17,14 +17,14 @@ namespace E_Commerce_MVC.Models
         public string PhoneNumber { get; set; }
         public DateTime JoinDate { get; set; }
 
+        // Navigation Properties
+        public virtual List<CartItem> cartItems { get; set; } = new List<CartItem>();
 
-        public virtual List<Cart> Carts { get; set; } = new List<Cart>();
+        public virtual List<Payment> payments { get; set; } = new List<Payment>();
 
-        public virtual List<Payment> Payments { get; set; } = new List<Payment>();
+        public virtual List<Order> orders { get; set; } = new List<Order>();
 
-        public virtual List<Order> Orders { get; set; } = new List<Order>();
-
-        public virtual List<Shipment> Shipments { get; set; } = new List<Shipment>();
+        public virtual List<Shipment> shipments { get; set; } = new List<Shipment>();
 
     }
 }

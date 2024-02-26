@@ -2,23 +2,23 @@
 
 namespace E_Commerce_MVC.Models
 {
-    public class Cart
+    public class CartItem
     {
 
         public int Id { get; set; }
 
         public int Quantity { get; set; }
 
-        [ForeignKey("Customer")]
+        [ForeignKey("customer")]
         public int? CustomerId { get; set; }
 
-        [ForeignKey("Product")]
+        [ForeignKey("product")]
         public int? ProductId { get; set; }
 
+        // Navigation Properties
+        public virtual Customer customer { get; set; }
 
-        public virtual Customer Customer { get; set; }
-
-        public virtual Product Product { get; set; }
+        public virtual Product product { get; set; }
 
     }
 }

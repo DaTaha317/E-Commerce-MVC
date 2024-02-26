@@ -5,10 +5,9 @@ namespace E_Commerce_MVC.Models
 {
    
     public class Shipment
-    {
-        
+    { 
         public int Id { get; set; }
-        public DateTime ShipmentDate { get;set; }
+        public DateTime Date { get;set; }
         public string Address { get;set; }
         public string City { get; set; }  
         public string State { get;set; } 
@@ -16,11 +15,12 @@ namespace E_Commerce_MVC.Models
         public string Country { get; set; }
         public string ZipCode { get; set; }
         public ShipmentStatus Status { get; set; }
-        [ForeignKey("Customer")]
+        [ForeignKey("customer")]
         public int? CustomerId { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        // Navigation Properties
+        public virtual Customer customer { get; set; }
 
-        public virtual List<Order> Orders { get; set; } = new List<Order>();
+        public virtual List<Order> orders { get; set; } = new List<Order>();
     }
 }
