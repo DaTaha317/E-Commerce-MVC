@@ -9,5 +9,6 @@ namespace E_Commerce_MVC.Interfaces
         public void Add(OrderItem item);
         public void Update(int id,OrderItem item);
         public void Delete(int id);
+        public void Save();
     }
 }

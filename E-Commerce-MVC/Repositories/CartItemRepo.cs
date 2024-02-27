@@ -10,9 +10,9 @@ namespace E_Commerce_MVC.Repositories
         {
             this.context = context;
         }
-        public void Add(CartItem cartItem)
+        public void Add(CartItem item)
         {
-            context.CartItems.Add(cartItem);
+            context.CartItems.Add(item);
         }
 
         public void Delete(int id)
@@ -27,7 +27,7 @@ namespace E_Commerce_MVC.Repositories
 
         public CartItem GetById(int id)
         {
-            return context.CartItems.SingleOrDefault(i=>id==id);
+            return context.CartItems.SingleOrDefault(i=>i.Id == id);
         }
 
         public void Save()
@@ -35,11 +35,11 @@ namespace E_Commerce_MVC.Repositories
             context.SaveChanges();
         }
 
-        public void Update(int id, CartItem category)
+        public void Update(int id, CartItem item)
         {
             if (GetById(id) != null)
             {
-               context.Update(category);
+               context.Update(item);
             }
             
         }

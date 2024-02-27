@@ -30,6 +30,11 @@ namespace E_Commerce_MVC.Repositories
             return context.OrderItems.SingleOrDefault(i => i.Id == id);
         }
 
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
         public void Update(int id, OrderItem item)
         {
             if (GetById(id) != null)

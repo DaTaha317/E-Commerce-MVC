@@ -45,7 +45,7 @@ namespace E_Commerce_MVC.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce_MVC.Models.Category", b =>
@@ -62,7 +62,7 @@ namespace E_Commerce_MVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce_MVC.Models.Customer", b =>
@@ -108,7 +108,7 @@ namespace E_Commerce_MVC.Migrations
                     b.HasIndex("PhoneNumber")
                         .IsUnique();
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce_MVC.Models.Order", b =>
@@ -142,7 +142,7 @@ namespace E_Commerce_MVC.Migrations
 
                     b.HasIndex("ShipmentId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce_MVC.Models.OrderItem", b =>
@@ -168,7 +168,7 @@ namespace E_Commerce_MVC.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce_MVC.Models.Payment", b =>
@@ -196,7 +196,7 @@ namespace E_Commerce_MVC.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce_MVC.Models.Product", b =>
@@ -232,7 +232,7 @@ namespace E_Commerce_MVC.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce_MVC.Models.Shipment", b =>
@@ -276,7 +276,7 @@ namespace E_Commerce_MVC.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Shipments");
+                    b.ToTable("Shipments", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce_MVC.Models.CartItem", b =>

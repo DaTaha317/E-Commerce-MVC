@@ -6,8 +6,8 @@ namespace E_Commerce_MVC.Interfaces
     {
         public List<CartItem> GetAll();
         public CartItem GetById(int id);
-        public void Add(CartItem cartItem);
-        public void Update(int id, CartItem category);
+        public void Add(CartItem item);
+        public void Update(int id, CartItem item);
         public void Delete(int id);
         public void Save();
     }

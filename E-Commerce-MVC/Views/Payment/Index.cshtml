@@ -1,0 +1,27 @@
+﻿@model List<Payment>
+
+@{
+    int i = 0;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Method</th>
+            <th scope="col">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Payment item in Model)
+        {
+            <tr>
+                <td>@(++i)</td>
+                <td>@item.customer.FirstName @item.customer.LastName</td>
+                <td>@item.Method</td>
+                <td>@item.Amount</td>
+            </tr>
+        }
+    </tbody>
+</table>
