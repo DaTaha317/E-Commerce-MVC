@@ -5,7 +5,6 @@ namespace E_Commerce_MVC.Models
     
     public class OrderItem
     {
-        //[PrimaryKey("OrderItemId", "OederOrderI")]
         public int Id { get; set; }
         public int Quantity { get; set; }
         [Column(TypeName ="money")]
