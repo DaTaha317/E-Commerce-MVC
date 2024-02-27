@@ -4,9 +4,6 @@ namespace E_Commerce_MVC.Models
 {
     public class CartItem
     {
-
-        public int Id { get; set; }
-
         public int Quantity { get; set; }
 
         [ForeignKey("customer")]

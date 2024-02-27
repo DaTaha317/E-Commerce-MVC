@@ -15,9 +15,9 @@ namespace E_Commerce_MVC.Repositories
             context.CartItems.Add(item);
         }
 
-        public void Delete(int id)
+        public void Delete(int productId, int customerId)
         {
-            context.CartItems.Remove(GetById(id));
+            context.CartItems.Remove(GetById(productId, customerId));
         }
 
         public List<CartItem> GetAll()
@@ -25,9 +25,9 @@ namespace E_Commerce_MVC.Repositories
             return context.CartItems.ToList();
         }
 
-        public CartItem GetById(int id)
+        public CartItem GetById(int productId, int customerId)
         {
-            return context.CartItems.SingleOrDefault(i=>i.Id == id);
+            return context.CartItems.SingleOrDefault(i=>i.ProductId == productId && i.CustomerId == customerId);
         }
 
         public void Save()
@@ -35,9 +35,9 @@ namespace E_Commerce_MVC.Repositories
             context.SaveChanges();
         }
 
-        public void Update(int id, CartItem item)
+        public void Update(int productId, int customerId, CartItem item)
         {
-            if (GetById(id) != null)
+            if (GetById(productId, customerId) != null)
             {
                context.Update(item);
             }
