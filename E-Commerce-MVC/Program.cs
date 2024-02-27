@@ -1,4 +1,6 @@
+using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
+using E_Commerce_MVC.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_MVC
@@ -17,6 +19,8 @@ namespace E_Commerce_MVC
                 options.UseLazyLoadingProxies()
                 .UseSqlServer(builder.Configuration.GetConnectionString("cs"))
             );
+
+            builder.Services.AddScoped<IProductRepo,ProductRepo>();
 
             var app = builder.Build();
 

@@ -1,0 +1,18 @@
+﻿@model List<Product>
+
+
+<div>
+    @foreach(var item in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-title">@item.Name</h5>
+            <img src="@item.Image" class="card-img-top" alt="..." width="200px" height="200px">
+            <div class="card-body">
+                <p class="card-text">@item.Description</p>
+                <p class="card-text">Price: @item.Price</p>
+                <p class="card-text">Stock: @item.Stock</p>
+                <a href="#" class="btn btn-primary">Add to cart</a>
+            </div>
+        </div>
+    }
+</div>
