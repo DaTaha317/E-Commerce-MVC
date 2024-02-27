@@ -29,14 +29,14 @@ namespace E_Commerce_MVC.Models
             // composite primary key for CartItems
             modelBuilder.Entity<CartItem>().HasKey(c => new
             {
-                c.Id,
+                c.ProductId,
                 c.CustomerId
             });
 
             // composite primary key for OrderItems
             modelBuilder.Entity<OrderItem>().HasKey(o => new
             {
-                o.Id,
+                o.ProductId,
                 o.OrderId
             });
 

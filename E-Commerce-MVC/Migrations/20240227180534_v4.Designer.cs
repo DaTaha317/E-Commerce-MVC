@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce_MVC.Migrations
 {
     [DbContext(typeof(ECommerceDB))]
-    [Migration("20240227100023_v5")]
-    partial class v5
+    [Migration("20240227180534_v4")]
+    partial class v4
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,23 +30,18 @@ namespace E_Commerce_MVC.Migrations
 
             modelBuilder.Entity("E_Commerce_MVC.Models.CartItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("Id", "CustomerId");
+                    b.HasKey("ProductId", "CustomerId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("CartItems");
                 });
@@ -150,7 +145,7 @@ namespace E_Commerce_MVC.Migrations
 
             modelBuilder.Entity("E_Commerce_MVC.Models.OrderItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int?>("OrderId")
@@ -159,17 +154,12 @@ namespace E_Commerce_MVC.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("Id", "OrderId");
+                    b.HasKey("ProductId", "OrderId");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderItems");
                 });
@@ -292,7 +282,9 @@ namespace E_Commerce_MVC.Migrations
 
                     b.HasOne("E_Commerce_MVC.Models.Product", "product")
                         .WithMany("cartItems")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("customer");
 
@@ -330,7 +322,9 @@ namespace E_Commerce_MVC.Migrations
 
                     b.HasOne("E_Commerce_MVC.Models.Product", "product")
                         .WithMany("orderItems")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("order");
 

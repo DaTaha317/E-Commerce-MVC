@@ -2,7 +2,8 @@
 {
     public enum ShipmentStatus
     {
-        Delivered,
-        Pending
+        Pending,
+        Shipped,
+        Delivered
     }
 }

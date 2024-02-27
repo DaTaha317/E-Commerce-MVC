@@ -27,7 +27,7 @@ namespace E_Commerce_MVC.Repositories
 
         public Payment GetById(int id)
         {
-            return context.Payments.SingleOrDefault(payment => payment.Id == id);
+            return context.Payments.SingleOrDefault(p => p.Id == id);
         }
 
         public void Save()

@@ -15,9 +15,9 @@ namespace E_Commerce_MVC.Repositories
             context.OrderItems.Add(item);
         }
 
-        public void Delete(int id)
+        public void Delete(int productId, int orderId)
         {
-            context.OrderItems.Remove(GetById(id));
+            context.OrderItems.Remove(GetById(productId,orderId));
         }
 
         public List<OrderItem> GetAll()
@@ -25,14 +25,19 @@ namespace E_Commerce_MVC.Repositories
             return context.OrderItems.ToList();
         }
 
-        public OrderItem GetById(int id)
+        public OrderItem GetById(int productId, int orderId)
         {
-            return context.OrderItems.SingleOrDefault(i => i.Id == id);
+            return context.OrderItems.SingleOrDefault(i => i.ProductId == productId && i.OrderId == orderId);
         }
 
-        public void Update(int id, OrderItem item)
+        public void Save()
         {
-            if (GetById(id) != null)
+            context.SaveChanges();
+        }
+
+        public void Update(int productId, int orderId, OrderItem item)
+        {
+            if (GetById(productId, orderId) != null)
             {
                 context.Update(item);
             }

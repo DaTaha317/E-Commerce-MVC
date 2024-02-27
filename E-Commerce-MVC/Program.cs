@@ -21,6 +21,14 @@ namespace E_Commerce_MVC
             );
 
             builder.Services.AddScoped<IProductRepo,ProductRepo>();
+            builder.Services.AddScoped<ICartItemRepo,CartItemRepo>();
+            builder.Services.AddScoped<ICategoryRepo,CategoryRepo>();
+            builder.Services.AddScoped<ICustomerRepo,CustomerRepo>();
+            builder.Services.AddScoped<IOrderItemRepo,OrderItemRepo>();
+            builder.Services.AddScoped<IPaymentRepo,PaymentRepo>();
+            builder.Services.AddScoped<IShipmentRepo,ShipmentRepo>();
+            builder.Services.AddScoped<IOrderRepo,OrderRepo>();
+
 
             var app = builder.Build();
 
