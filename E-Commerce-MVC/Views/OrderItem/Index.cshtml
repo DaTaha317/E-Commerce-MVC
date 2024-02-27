@@ -1,0 +1,15 @@
+﻿@model List<OrderItem>
+
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-title">@item.product.Name</h5>
+            <div class="card-body">
+                <p class="card-text">Price: @item.Price</p>
+                <p class="card-text">Payment Method: @item.order.payment.Amount</p>
+            </div>
+        </div>
+    }
+</div>
