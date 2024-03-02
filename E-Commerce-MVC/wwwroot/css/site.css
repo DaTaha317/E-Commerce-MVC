@@ -17,3 +17,7 @@ html {
   min-height: 100%;
 }
 
+.product-item img {
+    height: 250px !important;
+    width: 100% !important;
+}
