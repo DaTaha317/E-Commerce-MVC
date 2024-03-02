@@ -17,6 +17,7 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+.product-item img {
+    height: 250px !important;
+    width: 100% !important;
 }
