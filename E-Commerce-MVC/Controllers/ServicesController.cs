@@ -2,7 +2,7 @@
 
 namespace E_Commerce_MVC.Controllers
 {
-	public class ViewController : Controller
+	public class ServicesController : Controller
 	{
 		public IActionResult Index()
 		{

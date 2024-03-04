@@ -17,21 +17,25 @@
 </div>
 <!-- End Hero Section -->
 
-
 <div class="untree_co-section product-section before-footer-section">
 	<div class="container">
+		<div class="row mb-5">
+			@await Component.InvokeAsync("SearchBar", new { SearchPager = ViewBag.SearchPager })
+		</div>
 		<div class="row">
 			@foreach (var item in Model)
 			{
 				<!-- Start Column 1 -->
 				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
+					<a class="product-item">
 						<img src="@item.Image" class="img-fluid product-thumbnail">
 						<h3 class="product-title">@item.Name</h3>
 						<strong class="product-price">$@Math.Round(item.Price,2)</strong>
 
+
 						<span class="icon-cross d-flex justify-content-center align-items-center">
-							<i class="fa-solid fa-plus fa-xl text-white"></i>
+							<i class="fa-solid fa-plus fa-xl text-white" onclick="addToCartEvent(event)" data-product-id="@item.Id"></i>
+
 						</span>
 					</a>
 				</div>
@@ -40,5 +44,14 @@
 		</div>
 	</div>
 </div>
+<div id="toastContainer" aria-live="polite" aria-atomic="true" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+	<!-- Toasts will be inserted here -->
+</div>
+
+@section scripts{
+
+	<script src="~/js/addtocartscript.js"></script>
+}
+
 
 
