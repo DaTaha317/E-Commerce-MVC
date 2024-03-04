@@ -12,9 +12,19 @@ namespace E_Commerce_MVC.Controllers
         {
             this.context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string SearchText = "")
         {
-            List<Product> products = context.GetAll();
+            List<Product> products;
+
+            if (SearchText != "" && SearchText != null)
+            {
+                products = context.GetAll(SearchText);
+            }
+            else
+            {
+                products = context.GetAll();
+			}
+
             return View(products);
         }
     }
