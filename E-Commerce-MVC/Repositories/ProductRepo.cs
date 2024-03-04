@@ -21,9 +21,16 @@ namespace E_Commerce_MVC.Repositories
             context.Products.Remove(GetById(id));
         }
 
-        public List<Product> GetAll()
+        public List<Product> GetAll(string SearchText = "")
         {
-            return context.Products.ToList();
+            if (SearchText != "" &&  SearchText != null)
+            {
+                return context.Products.Where(p => p.Name.Contains(SearchText)).ToList();
+            }
+            else
+            {
+				return context.Products.ToList();
+			}    
         }
 
         public Product GetById(int id)
