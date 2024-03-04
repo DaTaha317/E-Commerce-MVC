@@ -1,5 +1,6 @@
 ﻿using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
+using E_Commerce_MVC.ViewComponents;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Commerce_MVC.Controllers
@@ -24,6 +25,15 @@ namespace E_Commerce_MVC.Controllers
             {
                 products = context.GetAll();
 			}
+
+            SPager SearchPager = new SPager()
+            {
+                Action = "Index",
+                Controller = "Product",
+                SearchText = SearchText
+            };
+
+            ViewBag.SearchPager = SearchPager;
 
             return View(products);
         }

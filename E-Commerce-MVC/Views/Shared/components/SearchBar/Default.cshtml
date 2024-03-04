@@ -1,0 +1,11 @@
+﻿@using E_Commerce_MVC.ViewComponents;
+@model SPager
+
+<div class="col-4 p-0 justify-content-end">
+	<form asp-controller="@Model.Controller" asp-action="@Model.Action">
+		<span class="btn-group">
+			<input class="form-control" type="text" name="SearchText" value="@Model.SearchText" placeholder="Search Key" />
+			<input class="p-1 m-lg-2 btn btn-sm btn-info" type="submit" name="name" value="Search" />
+		</span>
+	</form>
+</div>
