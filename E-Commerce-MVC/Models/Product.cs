@@ -18,7 +18,7 @@ namespace E_Commerce_MVC.Models
         // Navigation Properties
         public virtual Category category { get; set; }
 
-        public virtual List<OrderItem> orderItems { get; set; } = new List<OrderItem>();
-        public virtual List<CartItem> cartItems { get; set; } = new List<CartItem>();
+        public virtual List<OrderItem> orderItems { get; set; }
+        public virtual List<CartItem> cartItems { get; set; }
     }
 }
