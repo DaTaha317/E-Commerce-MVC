@@ -12,12 +12,12 @@ namespace E_Commerce_MVC
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation(); ;
 
             // IoC container Registerations
             builder.Services.AddDbContext<ECommerceDB>(options => 
                 options.UseLazyLoadingProxies()
-                .UseSqlServer(builder.Configuration.GetConnectionString("remote"))
+                .UseSqlServer(builder.Configuration.GetConnectionString("cs"))
             );
 
             builder.Services.AddScoped<IProductRepo,ProductRepo>();
