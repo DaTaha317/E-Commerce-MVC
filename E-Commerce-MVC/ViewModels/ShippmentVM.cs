@@ -9,18 +9,7 @@ namespace E_Commerce_MVC.ViewModels
         [Required]
         public string Country { get; set; }
 
-		[Required(ErrorMessage = "first name is required")]
-        [Remote("fNameLength", "ClientSideValidation",ErrorMessage = "first name must be at least 4 charachers")]
-		[Length(4, 10, ErrorMessage = "first name must be at least 4 charachers")]
-        public string FirstName { get; set; }
 
-		[Required(ErrorMessage = "last name is required")]
-		[Remote("lNameLength", "ClientSideValidation", ErrorMessage = "first name must be at least 4 charachers")]
-		[Length(4, 10, ErrorMessage = "last name must be at least 4 charachers")]
-		public string LastName { get; set; }
-        
-
-		public string CompanyName { get; set; }
 
         [Required]
         [StringLength(11, MinimumLength = 11, ErrorMessage = "Phone must should contain 11 numbers")]
@@ -44,10 +33,12 @@ namespace E_Commerce_MVC.ViewModels
         public string AddressDetails { get; set; }
 
         [Required]
-        public string City { get; set; }
+		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
+		public string City { get; set; }
 
         [Required]
-        public string State { get; set; }
+		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
+		public string State { get; set; }
 
         [Required]
         [StringLength(5,MinimumLength = 5,ErrorMessage = "zip code should be 5 numbers")]

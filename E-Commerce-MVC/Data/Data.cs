@@ -2,7 +2,7 @@
 
 namespace E_Commerce_MVC.Data
 {
-    static class Data
+    public static class Data
     {
         // this is to get the whole countries list
         static public List<string> GetCountryList()
