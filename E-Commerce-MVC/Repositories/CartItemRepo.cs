@@ -43,5 +43,32 @@ namespace E_Commerce_MVC.Repositories
             }
             
         }
-    }
+
+        public void DeleteByCartItem(CartItem cartItem)
+        {
+            context.CartItems.Remove(cartItem);
+        }
+
+
+		public decimal GetTotalPrice(int customerId)
+		{
+			decimal totalPrice = 0;
+            foreach(CartItem cartItem in GetCartItemsOfCustomer(customerId))
+            {
+                totalPrice += (cartItem.product.Price * cartItem.Quantity);
+            }
+
+            return totalPrice;
+		}
+
+        public List<CartItem> GetCartItemsOfCustomer(int customerId)
+        {
+            return GetAll().Where(items => items.CustomerId == customerId).ToList();
+        }
+
+		public decimal GetTotalPriceOfOneItem(CartItem item)
+		{
+            return item.Quantity * item.product.Price;
+		}
+	}
 }

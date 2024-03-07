@@ -7,9 +7,11 @@ namespace E_Commerce_MVC.Controllers
     public class CartItemController : Controller
     {
         private ICartItemRepo context;
-        public CartItemController(ICartItemRepo context)
+        private IProductRepo productRepo;
+        public CartItemController(ICartItemRepo context, IProductRepo productRepo)
         {
             this.context = context;
+            this.productRepo = productRepo;
         }
         public IActionResult Index()
         {
@@ -44,6 +46,22 @@ namespace E_Commerce_MVC.Controllers
             }
             context.Save();
             return RedirectToAction("Index", "Product");
+        }
+
+        public IActionResult DeleteCartItems()
+        {
+            List<CartItem> cartItems = context.GetCartItemsOfCustomer(1);
+
+            foreach(CartItem cartItem in cartItems)
+            {
+                Product product = productRepo.GetById((int)cartItem.ProductId);
+                product.Stock -= cartItem.Quantity;
+
+                context.DeleteByCartItem(cartItem);
+                context.Save();
+            }
+
+            return RedirectToAction("Index", "Shipment");
         }
     }
 }

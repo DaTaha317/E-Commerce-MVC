@@ -2,7 +2,7 @@
 @using E_Commerce_MVC.Data;
 @{
 	List<string> countries = Data.GetCountryList();
-	
+	List<CartItem> cartItems = ViewBag.Cart;
 }
 
 @model ShippmentVM
@@ -229,21 +229,23 @@
 									<th>Total</th>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-											<td>$250.00</td>
-										</tr>
-										<tr>
-											<td>Polo Shirt <strong class="mx-2">x</strong>   1</td>
-											<td>$100.00</td>
-										</tr>
-										<tr>
+										@{ decimal totalPrice = 0;}
+										@foreach(CartItem cartItem in cartItems)
+										{
+											decimal totalProductPrice = cartItem.product.Price * cartItem.Quantity;
+											<tr>
+												<td>@cartItem.product.Name <strong class="mx-2">x</strong> @cartItem.Quantity</td>
+												<td>$@totalProductPrice</td>
+											</tr>
+											totalPrice += totalProductPrice;
+										}
+@* 										<tr>
 											<td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
 											<td class="text-black">$350.00</td>
-										</tr>
+										</tr> *@
 										<tr>
 											<td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-											<td class="text-black font-weight-bold"><strong>$350.00</strong></td>
+											<td class="text-black font-weight-bold"><strong>$@totalPrice</strong></td>
 										</tr>
 									</tbody>
 								</table>
