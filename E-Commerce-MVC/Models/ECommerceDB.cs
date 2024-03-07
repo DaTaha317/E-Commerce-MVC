@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using E_Commerce_MVC.ViewModels;
 
 namespace E_Commerce_MVC.Models
 {
@@ -47,5 +48,6 @@ namespace E_Commerce_MVC.Models
 
             base.OnModelCreating(modelBuilder);
         }
+        public DbSet<E_Commerce_MVC.ViewModels.CustomerVM> CustomerVM { get; set; } = default!;
     }
 }
