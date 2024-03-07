@@ -1,6 +1,7 @@
 using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
 using E_Commerce_MVC.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_MVC
@@ -19,6 +20,9 @@ namespace E_Commerce_MVC
                 options.UseLazyLoadingProxies()
                 .UseSqlServer(builder.Configuration.GetConnectionString("cs"))
             );
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ECommerceDB>();
 
             builder.Services.AddScoped<IProductRepo,ProductRepo>();
             builder.Services.AddScoped<ICartItemRepo,CartItemRepo>();

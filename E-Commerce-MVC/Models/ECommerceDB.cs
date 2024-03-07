@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_MVC.Models
 {
-    public class ECommerceDB : DbContext
+    public class ECommerceDB : IdentityDbContext<ApplicationUser>
     {
         public virtual DbSet<CartItem> CartItems { get; set; }
 
