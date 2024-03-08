@@ -12,38 +12,20 @@ namespace E_Commerce_MVC.Repositories
             this.context = context;
         }
 
-        public void Add(User customer)
-        {
-            context.Customers.Add(customer);
-        }
-
-        public void Delete(string id)
-        {
-            context.Customers.Remove(GetById(id));
-        }
-
-        public List<User> GetAll()
-        {
-            return context.Customers.ToList();
-        }
-
-        public User GetById(string id)
-        {
-            return context.Customers.SingleOrDefault(c => c.Id == id);
-        }
 
         public void Save()
         {
             context.SaveChanges();
         }
 
-        public void Update(string id, User customer)
-        {
-            if (GetById(id) != null)
-            {
-                context.Customers.Update(customer);
-            }
+        //public void Update(string id, User customer)
+        //{
+        //    if (GetById(id) != null)
+        //    {
+        //        context.Customers.Update(customer);
+        //    }
 
-        }
+        //}
+
     }
 }

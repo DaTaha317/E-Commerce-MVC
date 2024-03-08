@@ -1,6 +1,7 @@
 ﻿using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace E_Commerce_MVC.Controllers
 {
@@ -23,7 +24,7 @@ namespace E_Commerce_MVC.Controllers
             {
                 Date = DateTime.Now,
                 Price = decimal.Parse(TempData["Amount"] as string),
-                CustomerId = 1,
+                CustomerId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                 PaymentId = (int?)TempData["PaymentId"],
                 ShipmentId = (int?)TempData["ShipmentId"]
             };

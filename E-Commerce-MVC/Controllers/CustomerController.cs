@@ -12,10 +12,10 @@ namespace E_Commerce_MVC.Controllers
         {
             this.context = context;
         }
-        public IActionResult Index()
-        {
-            List<User> customers = context.GetAll();
-            return View(customers);
-        }
+        //public IActionResult Index()
+        //{
+        //    List<User> customers = context.GetAll();
+        //    return View(customers);
+        //}
     }
 }

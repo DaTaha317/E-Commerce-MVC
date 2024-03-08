@@ -1,6 +1,10 @@
 ﻿using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace E_Commerce_MVC.Controllers
 {
@@ -8,14 +12,17 @@ namespace E_Commerce_MVC.Controllers
     {
         private ICartItemRepo context;
         private IProductRepo productRepo;
-        public CartItemController(ICartItemRepo context, IProductRepo productRepo)
+        private UserManager<User> userManager;
+        
+        public CartItemController(ICartItemRepo context, IProductRepo productRepo, UserManager<User> userManager)
         {
             this.context = context;
             this.productRepo = productRepo;
+            this.userManager = userManager;
         }
         public IActionResult Index()
         {
-            List<CartItem> cartItem = context.GetAll();
+            List<CartItem> cartItem = context.GetCartItemsOfCustomer(User.FindFirstValue(ClaimTypes.NameIdentifier));
             return View(cartItem);
         }
         public IActionResult Remove(int productId, string customerId)
@@ -26,19 +33,20 @@ namespace E_Commerce_MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddToCart(int productId)
         {
-
-            if(context.GetById(productId, "1") != null)
+            var Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if(context.GetById(productId, Id) != null)
             {
-                context.GetById(productId, "1").Quantity++;
+                context.GetById(productId, Id).Quantity++;
             }
             else
             {
                 CartItem cartItem = new()
                 {
                     ProductId = productId,
-                    CustomerId = "1",
+                    CustomerId = Id,
                     Quantity = 1,
                 };
 
@@ -50,7 +58,7 @@ namespace E_Commerce_MVC.Controllers
 
         public IActionResult DeleteCartItems()
         {
-            List<CartItem> cartItems = context.GetCartItemsOfCustomer(1);
+            List<CartItem> cartItems = context.GetCartItemsOfCustomer(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             foreach(CartItem cartItem in cartItems)
             {
