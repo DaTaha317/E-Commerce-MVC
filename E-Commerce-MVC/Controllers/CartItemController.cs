@@ -56,7 +56,8 @@ namespace E_Commerce_MVC.Controllers
             {
                 Product product = productRepo.GetById((int)cartItem.ProductId);
                 product.Stock -= cartItem.Quantity;
-
+                productRepo.Update(product.Id, product);
+                productRepo.Save();
                 context.DeleteByCartItem(cartItem);
                 context.Save();
             }
