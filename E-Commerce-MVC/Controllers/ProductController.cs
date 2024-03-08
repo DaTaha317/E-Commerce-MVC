@@ -49,5 +49,13 @@ namespace E_Commerce_MVC.Controllers
 
             return View(retProducts);
         }
+
+
+        public IActionResult Detail(int Id)
+        {
+            Product product = context.GetById(Id);
+
+            return View(product);
+        }
     }
 }

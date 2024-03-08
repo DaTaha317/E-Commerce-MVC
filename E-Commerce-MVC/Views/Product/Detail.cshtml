@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Product
+
+<div class="container">
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="@Model.Image" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Name</h5>
+                    <p class="card-text">@Model.Description</p>
+                    <p class="card-text">Price: <small class="text-body-success">@Model.Price</small></p>
+                    @if (Model.Stock == 0)
+                    {
+                        <small class="text-body-danger">Out Of Stock</small>
+                    }
+                    else
+                    {
+
+                        <span class="icon-cross d-flex justify-content-center align-items-center">
+                            <button class="btn btn-black btn-lg py-3 btn-block" onclick="addToCartEvent(event)" data-product-id="@Model.Id">Add To Cart</button>
+                        </span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script src="~/js/addtocartscript.js"></script>
+}
