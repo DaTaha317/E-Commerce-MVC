@@ -16,5 +16,24 @@ namespace E_Commerce_MVC.Controllers
             List<Order> orders = context.GetAll();
             return View(orders);
         }
+
+        public IActionResult AddOrder()
+        {
+            Order order = new Order()
+            {
+                Date = DateTime.Now,
+                Price = decimal.Parse(TempData["Amount"] as string),
+                CustomerId = 1,
+                PaymentId = (int?)TempData["PaymentId"],
+                ShipmentId = (int?)TempData["ShipmentId"]
+            };
+
+            context.Add(order);
+            context.Save();
+
+            TempData["OrderId"] = order.Id;
+
+            return RedirectToAction("AddOrderItem", "OrderItem");
+        }
     }
 }
