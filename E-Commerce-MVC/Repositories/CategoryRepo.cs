@@ -40,7 +40,7 @@ namespace E_Commerce_MVC.Repositories
         {
             if (GetById(id) != null)
             {
-                context.Update(category);
+                context.Categories.Update(category);
             }
         }
     }

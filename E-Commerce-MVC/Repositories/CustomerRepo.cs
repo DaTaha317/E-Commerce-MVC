@@ -41,7 +41,7 @@ namespace E_Commerce_MVC.Repositories
         {
             if (GetById(id) != null)
             {
-                context.Update(customer);
+                context.Customers.Update(customer);
             }
 
         }

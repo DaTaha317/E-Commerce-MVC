@@ -39,7 +39,7 @@ namespace E_Commerce_MVC.Repositories
         {
             if (GetById(productId, customerId) != null)
             {
-               context.Update(item);
+               context.CartItems.Update(item);
             }
             
         }
