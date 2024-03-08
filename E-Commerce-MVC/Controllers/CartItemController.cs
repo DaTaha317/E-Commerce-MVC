@@ -18,9 +18,9 @@ namespace E_Commerce_MVC.Controllers
             List<CartItem> cartItem = context.GetAll();
             return View(cartItem);
         }
-        public IActionResult Remove(int pId, int cId)
+        public IActionResult Remove(int productId, string customerId)
         {
-            context.Delete(pId, cId);
+            context.Delete(productId, customerId);
             context.Save();
             return RedirectToAction(nameof(Index));
         }
@@ -29,16 +29,16 @@ namespace E_Commerce_MVC.Controllers
         public IActionResult AddToCart(int productId)
         {
 
-            if(context.GetById(productId, 1) != null)
+            if(context.GetById(productId, "1") != null)
             {
-                context.GetById(productId, 1).Quantity++;
+                context.GetById(productId, "1").Quantity++;
             }
             else
             {
                 CartItem cartItem = new()
                 {
                     ProductId = productId,
-                    CustomerId = 1,
+                    CustomerId = "1",
                     Quantity = 1,
                 };
 

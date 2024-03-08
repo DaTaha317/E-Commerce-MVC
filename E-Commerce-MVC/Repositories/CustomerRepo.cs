@@ -12,22 +12,22 @@ namespace E_Commerce_MVC.Repositories
             this.context = context;
         }
 
-        public void Add(Customer customer)
+        public void Add(User customer)
         {
             context.Customers.Add(customer);
         }
 
-        public void Delete(int id)
+        public void Delete(string id)
         {
             context.Customers.Remove(GetById(id));
         }
 
-        public List<Customer> GetAll()
+        public List<User> GetAll()
         {
             return context.Customers.ToList();
         }
 
-        public Customer GetById(int id)
+        public User GetById(string id)
         {
             return context.Customers.SingleOrDefault(c => c.Id == id);
         }
@@ -37,7 +37,7 @@ namespace E_Commerce_MVC.Repositories
             context.SaveChanges();
         }
 
-        public void Update(int id, Customer customer)
+        public void Update(string id, User customer)
         {
             if (GetById(id) != null)
             {

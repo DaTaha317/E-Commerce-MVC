@@ -34,9 +34,24 @@
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-					<li><a class="nav-link" href="#"><img src="assets/images/user.svg"></a></li>
-					<li><a class="nav-link" asp-controller="CartItem" asp-action="Index"><img src="assets/images/cart.svg"></a></li>
+					<li><a class="nav-link" href="#"><img src="/assets/images/user.svg"></a></li>
+					<li><a class="nav-link" asp-controller="CartItem" asp-action="Index"><img src="/assets/images/cart.svg"></a></li>
 				</ul>
+
+				@if (User.Identity.IsAuthenticated == false)
+				{
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						<li><a class="nav-link" asp-controller="Registeration" asp-action="Register">Register</a></li>
+						<li><a class="nav-link" asp-controller="Account" asp-action="Login">Login</a></li>
+					</ul>
+				}
+				else
+				{
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						<li><a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a></li>
+					</ul>
+				}
+
 			</div>
 		</div>
 
@@ -53,7 +68,7 @@
 		<div class="container relative">
 
 			<div class="sofa-img">
-				<img src="assets/images/cheeseCake.png" alt="Image" class="img-fluid">
+				<img src="/assets/images/cheeseCake.png" alt="Image" class="img-fluid">
 			</div>
 
 		</div>

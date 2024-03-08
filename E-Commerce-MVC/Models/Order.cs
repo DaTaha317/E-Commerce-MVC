@@ -9,7 +9,7 @@ namespace E_Commerce_MVC.Models
         [Column(TypeName ="money")]
         public decimal Price { set; get; }
         [ForeignKey("customer")]
-        public int? CustomerId { set; get; }
+        public string? CustomerId { set; get; }
         [ForeignKey("payment")]
         public int? PaymentId { set; get; }
         [ForeignKey("shipment")]
@@ -18,7 +18,7 @@ namespace E_Commerce_MVC.Models
         // Navigation Properties
         public virtual Shipment shipment  { set; get; }
         public virtual Payment payment  { set; get; }
-        public virtual Customer customer { set; get; }
+        public virtual User customer { set; get; }
 
         public virtual List<OrderItem> orderItems { set; get; } = new List<OrderItem>();
     }
