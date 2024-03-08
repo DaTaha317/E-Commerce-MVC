@@ -1,6 +1,7 @@
 ﻿using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace E_Commerce_MVC.Controllers
 {
@@ -16,12 +17,13 @@ namespace E_Commerce_MVC.Controllers
         }
         public IActionResult AddPayment()
         {
+            var Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             Payment payment = new()
             {
                 Date = DateTime.Now,
                 Method = "Credit Card",
-                Amount = cartItemRepo.GetTotalPrice(1),
-                CustomerId = 1
+                Amount = cartItemRepo.GetTotalPrice(Id),
+                CustomerId = Id
             };
             context.Add(payment);
             context.Save();

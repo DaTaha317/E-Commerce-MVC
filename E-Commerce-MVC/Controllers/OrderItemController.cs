@@ -1,6 +1,7 @@
 ﻿using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace E_Commerce_MVC.Controllers
 {
@@ -21,7 +22,7 @@ namespace E_Commerce_MVC.Controllers
 
         public IActionResult AddOrderItem()
         {
-            List<CartItem> cartItems = cartItemRepo.GetCartItemsOfCustomer(1);
+            List<CartItem> cartItems = cartItemRepo.GetCartItemsOfCustomer(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
 
             foreach(CartItem cartItem in cartItems)

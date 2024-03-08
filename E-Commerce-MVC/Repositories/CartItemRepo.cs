@@ -6,6 +6,7 @@ namespace E_Commerce_MVC.Repositories
     public class CartItemRepo : ICartItemRepo
     {
         private ECommerceDB context;
+
         public CartItemRepo(ECommerceDB context)
         {
             this.context = context;
@@ -50,7 +51,7 @@ namespace E_Commerce_MVC.Repositories
         }
 
 
-		public decimal GetTotalPrice(int customerId)
+		public decimal GetTotalPrice(string customerId)
 		{
 			decimal totalPrice = 0;
             foreach(CartItem cartItem in GetCartItemsOfCustomer(customerId))
@@ -61,8 +62,9 @@ namespace E_Commerce_MVC.Repositories
             return totalPrice;
 		}
 
-        public List<CartItem> GetCartItemsOfCustomer(int customerId)
+        public List<CartItem> GetCartItemsOfCustomer(string customerId)
         {
+            
             return GetAll().Where(items => items.CustomerId == customerId).ToList();
         }
 

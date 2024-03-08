@@ -2,6 +2,7 @@
 using E_Commerce_MVC.Models;
 using E_Commerce_MVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace E_Commerce_MVC.Controllers
 {
@@ -38,7 +39,7 @@ namespace E_Commerce_MVC.Controllers
                     State = shippmentVM.State,
                     Country = shippmentVM.Country,
                     ZipCode = shippmentVM.ZipCode,
-                    CustomerId = 1,
+                    CustomerId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                     Status = ShipmentStatus.Pending
                 };
                 context.Add(shipment);
