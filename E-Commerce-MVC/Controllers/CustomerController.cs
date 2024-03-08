@@ -14,7 +14,7 @@ namespace E_Commerce_MVC.Controllers
         }
         public IActionResult Index()
         {
-            List<Customer> customers = context.GetAll();
+            List<User> customers = context.GetAll();
             return View(customers);
         }
     }

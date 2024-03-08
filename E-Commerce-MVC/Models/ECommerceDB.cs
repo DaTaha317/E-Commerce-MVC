@@ -4,13 +4,13 @@ using E_Commerce_MVC.ViewModels;
 
 namespace E_Commerce_MVC.Models
 {
-    public class ECommerceDB : IdentityDbContext<ApplicationUser>
+    public class ECommerceDB : IdentityDbContext<User>
     {
         public virtual DbSet<CartItem> CartItems { get; set; }
 
         public virtual DbSet<Category> Categories { get; set; }
 
-        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<User> Customers { get; set; }
 
         public virtual DbSet<Order> Orders { get; set; }
 
@@ -43,11 +43,12 @@ namespace E_Commerce_MVC.Models
             });
 
             // Unique attribute for Customer Email & Phone number
-            modelBuilder.Entity<Customer>().HasIndex(c => c.Email).IsUnique();
-            modelBuilder.Entity<Customer>().HasIndex(c => c.PhoneNumber).IsUnique();
+            modelBuilder.Entity<User>().HasIndex(c => c.Email).IsUnique();
+            modelBuilder.Entity<User>().HasIndex(c => c.PhoneNumber).IsUnique();
 
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<E_Commerce_MVC.ViewModels.CustomerVM> CustomerVM { get; set; } = default!;
+        public DbSet<E_Commerce_MVC.ViewModels.LoginVM> LoginVM { get; set; } = default!;
     }
 }

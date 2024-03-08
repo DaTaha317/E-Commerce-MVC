@@ -1,4 +1,4 @@
-﻿@model List<Customer>
+﻿@model List<User>
 
 @{
     int i = 0;
@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(Customer item in Model)
+        @foreach(User item in Model)
         { 
         <tr>
             <td>@(++i)</td>

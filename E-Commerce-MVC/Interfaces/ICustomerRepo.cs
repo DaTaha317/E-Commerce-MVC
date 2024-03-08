@@ -4,11 +4,11 @@ namespace E_Commerce_MVC.Interfaces
 {
     public interface ICustomerRepo
     {
-        public List<Customer> GetAll();
-        public Customer GetById(int id);
-        public void Add(Customer customer);
-        public void Update(int id, Customer customer);
-        public void Delete(int id);
+        public List<User> GetAll();
+        public User GetById(string id);
+        public void Add(User customer);
+        public void Update(string id, User customer);
+        public void Delete(string id);
         public void Save();
     }
 }
