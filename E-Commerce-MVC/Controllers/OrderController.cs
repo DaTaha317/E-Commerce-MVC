@@ -1,5 +1,6 @@
 ﻿using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 

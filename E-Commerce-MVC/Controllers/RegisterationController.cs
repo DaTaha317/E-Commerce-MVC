@@ -39,12 +39,14 @@ namespace E_Commerce_MVC.Controllers
                 LastName = customerVM.LastName,
                 Address = customerVM.Address,
                 PhoneNumber = customerVM.PhoneNumber,
+                JoinDate = DateTime.Now
             };
 
             IdentityResult result = await userManager.CreateAsync(user, customerVM.Password);
 
             if (result.Succeeded)
             {
+                await userManager.AddToRoleAsync(user, "customer");
                 await signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction("Index", "Home");
             }

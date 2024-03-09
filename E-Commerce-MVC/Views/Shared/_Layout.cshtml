@@ -45,6 +45,14 @@
 						<li><a class="nav-link" asp-controller="Account" asp-action="Login">Login</a></li>
 					</ul>
 				}
+				else if (User.IsInRole("admin"))
+				{
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						<li><a class="nav-link" asp-controller="Role" asp-action="Index">Roles</a></li>
+						<li><a class="nav-link" asp-controller="Admin" asp-action="register">Admin</a></li>
+						<li><a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a></li>
+					</ul>
+				}
 				else
 				{
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">

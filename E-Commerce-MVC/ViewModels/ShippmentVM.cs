@@ -26,11 +26,7 @@ namespace E_Commerce_MVC.ViewModels
         public DateTime Date { get; set; }
 
         [Required]
-        [Length(5,20,ErrorMessage = "You should provide at least 5 characters")]
         public string Address { get; set; }
-
-
-        public string AddressDetails { get; set; }
 
         [Required]
 		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]

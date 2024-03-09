@@ -50,5 +50,6 @@ namespace E_Commerce_MVC.Models
         }
         public DbSet<E_Commerce_MVC.ViewModels.CustomerVM> CustomerVM { get; set; } = default!;
         public DbSet<E_Commerce_MVC.ViewModels.LoginVM> LoginVM { get; set; } = default!;
+        public DbSet<E_Commerce_MVC.ViewModels.AdminVM> AdminVM { get; set; } = default!;
     }
 }

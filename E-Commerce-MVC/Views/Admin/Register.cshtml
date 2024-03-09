@@ -1,16 +1,17 @@
-﻿@model E_Commerce_MVC.ViewModels.LoginVM
+﻿@model E_Commerce_MVC.ViewModels.AdminVM
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Register";
 }
 
-<
 <div class="container">
-    <h4>LoginVM</h4>
+    <h1>Register</h1>
+
+    <h4>AdminVM</h4>
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="Login">
+            <form asp-action="Register">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Email" class="control-label"></label>
@@ -22,14 +23,23 @@
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmedPassword" class="control-label"></label>
+                    <input asp-for="ConfirmedPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmedPassword" class="text-danger"></span>
+                </div>
                 <div class="form-group mt-3">
-                    <input type="submit" value="Login" class="btn btn-primary" />
+                    <input type="submit" value="Register Admin" class="btn btn-primary" />
                 </div>
             </form>
         </div>
     </div>
 
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

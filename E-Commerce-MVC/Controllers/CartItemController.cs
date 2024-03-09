@@ -8,6 +8,7 @@ using System.Security.Claims;
 
 namespace E_Commerce_MVC.Controllers
 {
+    [Authorize]
     public class CartItemController : Controller
     {
         private ICartItemRepo context;
@@ -33,7 +34,6 @@ namespace E_Commerce_MVC.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult AddToCart(int productId)
         {
             var Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
