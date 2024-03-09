@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_Commerce_MVC.Controllers
 {
+	[Authorize(Roles = "admin")]
 	public class RoleController : Controller
 	{
 		private RoleManager<IdentityRole> roleManager;

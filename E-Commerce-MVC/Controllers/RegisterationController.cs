@@ -46,6 +46,7 @@ namespace E_Commerce_MVC.Controllers
 
             if (result.Succeeded)
             {
+                await userManager.AddToRoleAsync(user, "customer");
                 await signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction("Index", "Home");
             }
