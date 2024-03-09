@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model List<IdentityRole>
+
+@{
+    int index = 1;
+}
+
+<div class="container">
+    <a class="btn btn-primary mt-5" asp-action="add">Add Role</a>
+    <table class="table my-5">
+        <thead class="dark-green">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var role in Model)
+            {
+                <tr>
+                    <th scope="row">@(index++)</th>
+                    <td>@role</td>
+                </tr>
+            }      
+        </tbody>
+    </table>
+</div>

@@ -21,3 +21,8 @@ html {
     height: 250px !important;
     width: 100% !important;
 }
+
+.dark-green {
+    background-color: #3b5d50 !important;
+    color: white;
+}

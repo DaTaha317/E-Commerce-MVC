@@ -39,6 +39,7 @@ namespace E_Commerce_MVC.Controllers
                 LastName = customerVM.LastName,
                 Address = customerVM.Address,
                 PhoneNumber = customerVM.PhoneNumber,
+                JoinDate = DateTime.Now
             };
 
             IdentityResult result = await userManager.CreateAsync(user, customerVM.Password);
