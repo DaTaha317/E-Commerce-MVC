@@ -1,5 +1,6 @@
 ﻿using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -15,6 +16,15 @@ namespace E_Commerce_MVC.Controllers
             this.context = context;
             this.cartItemRepo = cartItemRepo;
         }
+
+        [Authorize(Roles ="admin")]
+        public IActionResult Index()
+        {
+            List<Payment> payments = context.GetAll();
+            return View(payments);
+        }
+
+        [Authorize(Roles ="customer")]
         public IActionResult AddPayment()
         {
             var Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
