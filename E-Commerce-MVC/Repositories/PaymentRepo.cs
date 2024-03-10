@@ -20,9 +20,16 @@ namespace E_Commerce_MVC.Repositories
             context.Payments.Remove(GetById(id));
         }
 
-        public List<Payment> GetAll()
+        public List<Payment> GetAll(string SearchText = "")
         {
-            return context.Payments.ToList();
+            if (SearchText != "" && SearchText != null)
+            {
+                return context.Payments.Where(p => p.customer.FirstName.Contains(SearchText) || p.customer.LastName.Contains(SearchText)).ToList();
+            }
+            else
+            {
+                return context.Payments.ToList();
+            }
         }
 
         public Payment GetById(int id)

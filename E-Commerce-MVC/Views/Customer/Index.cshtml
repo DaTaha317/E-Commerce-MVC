@@ -4,23 +4,48 @@
     int i = 0;
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Last</th>
-            <th scope="col">Email</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(User item in Model)
-        { 
-        <tr>
-            <td>@(++i)</td>
-            <td>@item.FirstName @item.LastName</td>
-            <td>@item.Email</td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="container-fluid p-0">
+    @await Component.InvokeAsync("ProfileBar");
+</div>
+
+
+<div class="container">
+    <div class="row mb-3">
+        @await Component.InvokeAsync("SearchBar", new { SearchPager = ViewBag.SearchPager })
+    </div>
+
+    <table class="table mb-5">
+        <thead class="dark-green">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Join Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (User item in Model)
+            {
+                <tr>
+                    <td>@(++i)</td>
+                    <td>@item.Id</td>
+                    <td>@item.FirstName @item.LastName</td>
+                    @if (item.FirstName == null && item.LastName == null)
+                    {
+                        <td style="color:red">@item.Email</td>
+                    }
+                    else
+                    {
+                        <td>@item.Email</td>
+                    }
+                    <td>@item.Address</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.JoinDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

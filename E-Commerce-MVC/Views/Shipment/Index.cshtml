@@ -116,79 +116,6 @@
 						</div>
 
 
-						@* <div class="form-group">
-							<label for="c_ship_different_address" class="text-black" data-bs-toggle="collapse" href="#ship_different_address" role="button" aria-expanded="false" aria-controls="ship_different_address"><input type="checkbox" value="1" id="c_ship_different_address"> Ship To A Different Address?</label>
-							<div class="collapse" id="ship_different_address">
-								<div class="py-2">
-
-									<div class="form-group">
-										<label for="c_diff_country" class="text-black">Country <span class="text-danger">*</span></label>
-										<select id="c_diff_country" class="form-control">
-											<option value="1">Select a country</option>
-											@foreach (string c in countries)
-											{
-												<option value="@c">@c</option>
-											}
-										</select>
-									</div>
-
-
-									<div class="form-group row">
-										<div class="col-md-6">
-											<label for="c_diff_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-											<input type="text" class="form-control" id="c_diff_fname" name="c_diff_fname">
-										</div>
-										<div class="col-md-6">
-											<label for="c_diff_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-											<input type="text" class="form-control" id="c_diff_lname" name="c_diff_lname">
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<div class="col-md-12">
-											<label for="c_diff_companyname" class="text-black">Company Name </label>
-											<input type="text" class="form-control" id="c_diff_companyname" name="c_diff_companyname">
-										</div>
-									</div>
-
-									<div class="form-group row  mb-3">
-										<div class="col-md-12">
-											<label for="c_diff_address" class="text-black">Address <span class="text-danger">*</span></label>
-											<input type="text" class="form-control" id="c_diff_address" name="c_diff_address" placeholder="Street address">
-										</div>
-									</div>
-
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-									</div>
-
-									<div class="form-group row">
-										<div class="col-md-6">
-											<label for="c_diff_state_country" class="text-black">State / Country <span class="text-danger">*</span></label>
-											<input type="text" class="form-control" id="c_diff_state_country" name="c_diff_state_country">
-										</div>
-										<div class="col-md-6">
-											<label for="c_diff_postal_zip" class="text-black">Posta / Zip <span class="text-danger">*</span></label>
-											<input type="text" class="form-control" id="c_diff_postal_zip" name="c_diff_postal_zip">
-										</div>
-									</div>
-
-									<div class="form-group row mb-5">
-										<div class="col-md-6">
-											<label for="c_diff_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-											<input type="text" class="form-control" id="c_diff_email_address" name="c_diff_email_address">
-										</div>
-										<div class="col-md-6">
-											<label for="c_diff_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-											<input type="text" class="form-control" id="c_diff_phone" name="c_diff_phone" placeholder="Phone Number">
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-						</div> *@
-
 						<div class="form-group">
 							<label for="c_order_notes" class="text-black">Order Notes</label>
 							<textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
@@ -235,10 +162,7 @@
 											</tr>
 											totalPrice += totalProductPrice;
 										}
-@* 										<tr>
-											<td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-											<td class="text-black">$350.00</td>
-										</tr> *@
+
 										<tr>
 											<td class="text-black font-weight-bold"><strong>Order Total</strong></td>
 											<td class="text-black font-weight-bold"><strong>$@totalPrice</strong></td>
@@ -277,7 +201,7 @@
 								</div>
 
 								<div class="form-group">
-									@if(cartItems.Count > 0)
+									@if(cartItems.Count > 0 && User.IsInRole("customer"))
 									{
 										<button class="btn btn-black btn-lg py-3 btn-block" type="submit">Place Order</button>
 
@@ -299,11 +223,6 @@
 </div>
 
 @section Scripts {
-
-	
-	
-
-
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

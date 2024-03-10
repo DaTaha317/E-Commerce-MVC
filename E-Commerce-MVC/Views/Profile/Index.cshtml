@@ -1,0 +1,14 @@
+﻿@model User
+<div class="container-fluid p-0">
+	@await Component.InvokeAsync("ProfileBar");
+</div>
+
+<div class="container">
+	<div class="card" style="width: 18rem;">
+		<div class="card-body">
+			<h5 class="card-title">Name: @Model.FirstName @Model.LastName</h5>
+			<p class="card-text">Email: @Model.Email</p>
+			<p class="card-text">Join Date: @Model.JoinDate</p>
+		</div>
+	</div>
+</div>

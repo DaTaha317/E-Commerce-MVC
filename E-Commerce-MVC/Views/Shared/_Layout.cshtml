@@ -34,7 +34,7 @@
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-					<li><a class="nav-link" href="#"><img src="/assets/images/user.svg"></a></li>
+					<li><a class="nav-link" asp-controller="Profile" asp-action="Index"><img src="/assets/images/user.svg"></a></li>
 					<li><a class="nav-link" asp-controller="CartItem" asp-action="Index"><img src="/assets/images/cart.svg"></a></li>
 				</ul>
 
@@ -45,16 +45,7 @@
 						<li><a class="nav-link" asp-controller="Account" asp-action="Login">Login</a></li>
 					</ul>
 				}
-				else if (User.IsInRole("admin"))
-				{
-					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-						<li><a class="nav-link" asp-controller="Shipment" asp-action="shipmentData">Shipments</a></li>
-						<li><a class="nav-link" asp-controller="Payment" asp-action="Index">Payments</a></li>
-						<li><a class="nav-link" asp-controller="Role" asp-action="Index">Roles</a></li>
-						<li><a class="nav-link" asp-controller="Admin" asp-action="register">Add Admin</a></li>
-						<li><a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a></li>
-					</ul>
-				}
+
 				else
 				{
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
@@ -67,17 +58,17 @@
 
 	</nav>
 	<!-- End Header/Navigation -->
-    <div class="container-fluid px-0">
-        <main role="main" class="pb-3 px-0">
+	<div class="container-fluid px-0 mb-5">
+        <main role="main" class="pb-3 px-0 rendered-body">
             @RenderBody()
         </main>
     </div>
 
 	<!-- Start Footer Section -->
-	<footer class="footer-section pb-0 px-5">
+	<footer class="footer-section pb-0 px-5 mt-5">
 		<div class="container relative">
 
-			<div class="sofa-img">
+			<div class="sofa-img pt-5">
 				<img src="/assets/images/cheeseCake.png" alt="Image" class="img-fluid">
 			</div>
 

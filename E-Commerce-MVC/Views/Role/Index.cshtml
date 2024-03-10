@@ -5,6 +5,10 @@
     int index = 1;
 }
 
+<div class="container-fluid p-0">
+    @await Component.InvokeAsync("ProfileBar");
+</div>
+
 <div class="container">
     <a class="btn btn-primary mt-5" asp-action="add">Add Role</a>
     <table class="table my-5">

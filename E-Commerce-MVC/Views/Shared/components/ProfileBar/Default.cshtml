@@ -1,0 +1,23 @@
+﻿
+<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
+	<div class="container justify-content-center">
+		<div id="navbarsFurni">
+			<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+				@if (User.IsInRole("admin"))
+				{
+					<li><a class="nav-link" asp-controller="Customer" asp-action="Index">Customers</a></li>
+					<li><a class="nav-link" asp-controller="Shipment" asp-action="AllData">Shipments</a></li>
+					<li><a class="nav-link" asp-controller="Payment" asp-action="Index">Payments</a></li>
+					<li><a class="nav-link" asp-controller="Role" asp-action="Index">Roles</a></li>
+					<li><a class="nav-link" asp-controller="Admin" asp-action="register">Add Admin</a></li>
+				}
+				else
+				{
+					<li><a class="nav-link" asp-controller="Shipment" asp-action="DataById">My Shipment History</a></li>
+				}
+			</ul>
+		</div>
+	</div>
+
+</nav>

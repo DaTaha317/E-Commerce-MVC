@@ -43,6 +43,7 @@ namespace E_Commerce_MVC
             builder.Services.AddScoped<IOrderRepo,OrderRepo>();
 
 
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

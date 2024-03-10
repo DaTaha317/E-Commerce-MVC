@@ -21,9 +21,29 @@ namespace E_Commerce_MVC.Repositories
             context.Shipments.Remove(GetById(id));
         }
 
-        public List<Shipment> GetAll()
+        public List<Shipment> GetAll(string SearchText = "")
         {
-            return context.Shipments.ToList();  
+            if (SearchText != "" && SearchText != null)
+            {
+                return context.Shipments.Where(p => p.customer.FirstName.Contains(SearchText) || p.customer.LastName.Contains(SearchText)).ToList();
+            }
+            else
+            {
+                return context.Shipments.ToList();
+            }
+        }
+
+        public List<Shipment> GetAllById(string customerId, string SearchText = "")
+        {
+            var shipmentsById = context.Shipments.Where(u => u.CustomerId == customerId);
+            if (SearchText != "" && SearchText != null)
+            {
+                return shipmentsById.Where(p => p.Address.Contains(SearchText)).ToList();
+            }
+            else
+            {
+                return shipmentsById.ToList();
+            }
         }
 
         public Shipment GetById(int id)
