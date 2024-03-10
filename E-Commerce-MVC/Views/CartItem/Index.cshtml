@@ -71,7 +71,7 @@
 
                                         </td>
                                         <td>@Math.Round((item.product.Price * item.Quantity), 2)</td>
-                                        <td><a asp-action="Remove" asp-controller="CartItem" asp-route-cId="@item.CustomerId" asp-route-pId="@item.ProductId" id="removeButton" class="btn btn-black btn-sm">X</a></td>
+                                        <td><a asp-action="Remove" asp-controller="CartItem" asp-route-productId="@item.ProductId" id="removeButton" class="btn btn-black btn-sm">X</a></td>
                                     </tr>
                                 }
 

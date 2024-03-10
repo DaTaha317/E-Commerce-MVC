@@ -26,9 +26,10 @@ namespace E_Commerce_MVC.Controllers
             List<CartItem> cartItem = context.GetCartItemsOfCustomer(User.FindFirstValue(ClaimTypes.NameIdentifier));
             return View(cartItem);
         }
-        public IActionResult Remove(int productId, string customerId)
+        public IActionResult Remove(int productId)
         {
-            context.Delete(productId, customerId);
+            var customerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			context.Delete(productId, customerId);
             context.Save();
             return RedirectToAction(nameof(Index));
         }
