@@ -18,3 +18,4 @@ inputField.addEventListener("input", () => {
 		applyButton.disabled = true;
 	}
 });
+
