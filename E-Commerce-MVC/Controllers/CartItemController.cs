@@ -14,7 +14,7 @@ namespace E_Commerce_MVC.Controllers
         private ICartItemRepo context;
         private IProductRepo productRepo;
         private UserManager<User> userManager;
-        
+
         public CartItemController(ICartItemRepo context, IProductRepo productRepo, UserManager<User> userManager)
         {
             this.context = context;
@@ -29,7 +29,7 @@ namespace E_Commerce_MVC.Controllers
         public IActionResult Remove(int productId)
         {
             var customerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-			context.Delete(productId, customerId);
+            context.Delete(productId, customerId);
             context.Save();
             return RedirectToAction(nameof(Index));
         }
@@ -38,7 +38,7 @@ namespace E_Commerce_MVC.Controllers
         public IActionResult AddToCart(int productId)
         {
             var Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if(context.GetById(productId, Id) != null)
+            if (context.GetById(productId, Id) != null)
             {
                 context.GetById(productId, Id).Quantity++;
             }
@@ -61,7 +61,7 @@ namespace E_Commerce_MVC.Controllers
         {
             List<CartItem> cartItems = context.GetCartItemsOfCustomer(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            foreach(CartItem cartItem in cartItems)
+            foreach (CartItem cartItem in cartItems)
             {
                 Product product = productRepo.GetById((int)cartItem.ProductId);
                 product.Stock -= cartItem.Quantity;
@@ -73,5 +73,56 @@ namespace E_Commerce_MVC.Controllers
 
             return RedirectToAction("Index", "Shipment");
         }
+
+        public IActionResult IncrementProduct(int productId)
+        {
+            // get id of the user
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // get product wanted by user 
+            CartItem cartItem = context.GetById(productId, userId);
+
+            // increment
+            cartItem.Quantity += 1;
+
+            // update
+            context.Update(productId, userId, cartItem);
+
+            context.Save();
+
+
+            return NoContent();
+
+        }
+
+        public IActionResult decreaseProduct(int productId)
+        {
+            // get id of the user
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // get product wanted by user 
+            CartItem cartItem = context.GetById(productId, userId);
+
+            // decrement
+            cartItem.Quantity -= 1;
+
+            // update
+            context.Update(productId, userId, cartItem);
+
+            context.Save();
+
+            return NoContent();
+        }
+
+        // refresh the page
+        public IActionResult UpdateCart()
+        {
+            context.Save();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        
+
     }
 }

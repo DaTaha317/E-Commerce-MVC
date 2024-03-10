@@ -61,16 +61,16 @@
                                         <td>
                                             <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
                                                 <div class="input-group-prepend">
-                                                    <button class="btn btn-outline-black decrease" type="button">&minus;</button>
+                                                    <a asp-action="decreaseProduct" asp-controller="CartItem" asp-route-productId="@item.ProductId" class="btn btn-outline-black decrease" type="button">&minus;</a>
                                                 </div>
-                                                <input type="text" class="form-control text-center quantity-amount" value="@item.Quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                <input type="text" class="form-control text-center quantity-amount" value="@item.Quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" oninput="changeTotal(this)">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-black increase" type="button">&plus;</button>
+                                                    <a asp-action="IncrementProduct" asp-controller="CartItem" asp-route-productId="@item.ProductId" class="btn btn-outline-black increase" type="button">&plus;</a>
                                                 </div>
                                             </div>
 
                                         </td>
-                                        <td>@Math.Round((item.product.Price * item.Quantity), 2)</td>
+                                        <td id="product-total-price">@Math.Round((item.product.Price * item.Quantity), 2)</td>
                                         <td><a asp-action="Remove" asp-controller="CartItem" asp-route-productId="@item.ProductId" id="removeButton" class="btn btn-black btn-sm">X</a></td>
                                     </tr>
                                 }
@@ -92,7 +92,7 @@
             <div class="col-md-6">
                 <div class="row mb-5">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <button class="btn btn-black btn-sm btn-block">Update Cart</button>
+                        <a asp-action="UpdateCart" asp-controller="CartItem" class="btn btn-black btn-sm btn-block">Update Cart</a>
                     </div>
                     <div class="col-md-6">
                         <a asp-action="Index" asp-controller="Product" class="btn btn-outline-black btn-sm btn-block">Continue Shopping</a>
