@@ -26,3 +26,7 @@ html {
     background-color: #3b5d50 !important;
     color: white;
 }
+
+.rendered-body {
+    min-height: 500px;
+}

@@ -1,32 +1,32 @@
-﻿@model List<Payment>
+﻿@model List<Shipment>
 
 @{
+    ViewData["Title"] = "shipmentData";
     int i = 0;
 }
 
 <div class="container-fluid p-0">
-	@await Component.InvokeAsync("ProfileBar");
+    @await Component.InvokeAsync("ProfileBar");
 </div>
 
-
 <div class="container">
-    <div class="row mb-3">
-        @await Component.InvokeAsync("SearchBar", new { SearchPager = ViewBag.SearchPager })
-    </div>
-    <table class="table">
+    @await Component.InvokeAsync("SearchBar", new { SearchPager = ViewBag.SearchPager })
+    <table class="table mt-3">
         <thead class="dark-green">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Payment Id</th>
+                <th scope="col">Shipment Id</th>
                 <th scope="col">Customer Id</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Date</th>
-                <th scope="col">Method</th>
-                <th scope="col">Amount</th>
+                <th scope="col">Country</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (Payment item in Model)
+            @foreach (Shipment item in Model)
             {
                 <tr>
                     <td>@(++i)</td>
@@ -34,8 +34,10 @@
                     <td>@item.CustomerId</td>
                     <td>@item.customer.FirstName @item.customer.LastName</td>
                     <td>@item.Date</td>
-                    <td>@item.Method</td>
-                    <td>@item.Amount</td>
+                    <td>@item.Country</td>
+                    <td>@item.City</td>
+                    <td>@item.Address</td>
+                    <td>@item.Status</td>
                 </tr>
             }
         </tbody>

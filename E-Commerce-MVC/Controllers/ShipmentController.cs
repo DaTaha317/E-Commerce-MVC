@@ -1,6 +1,7 @@
 ﻿using Castle.Core.Resource;
 using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
+using E_Commerce_MVC.ViewComponents;
 using E_Commerce_MVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -19,8 +20,6 @@ namespace E_Commerce_MVC.Controllers
         }
         public IActionResult Index()
         {
-            //List<Shipment> shipments = context.GetAll();
-
             ViewBag.countries = Data.Data.GetCountryList();
             var CustomerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             List<CartItem> cartItems = cartItemRepo.GetCartItemsOfCustomer(CustomerId);
@@ -50,26 +49,45 @@ namespace E_Commerce_MVC.Controllers
                 TempData["ShipmentId"] = shipment.Id;
                 return RedirectToAction("AddPayment", "Payment");
 
-                //List<CartItem> cartItems = cartItemRepo.GetAll();
-                //if(cartItems.Count > 0)
-                //{
-                //    foreach(CartItem cartItem in cartItems)
-                //    {
-
-                //        cartItemRepo.DeleteByCartItem(cartItem);
-                //        cartItemRepo.Save();
-
-                //    }
-                //}
             }
 
             return View("Index");
         }
 
-        public IActionResult shipmentData()
+        public IActionResult AllData(string SearchText = "", int pg = 1)
         {
-            List<Shipment> shipments = context.GetAll();
-            return View(shipments);
+            List<Shipment> shipments;
+
+            if (SearchText != "" && SearchText != null)
+            {
+                shipments = context.GetAll(SearchText);
+            }
+            else
+            {
+                shipments = context.GetAll();
+            }
+
+            // Paging
+            const int pageSize = 4;
+
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+
+            int recsCount = shipments.Count();
+            int recSkip = (pg - 1) * pageSize;
+            List<Shipment> retProducts = shipments.Skip(recSkip).Take(pageSize).ToList();
+            SPager SearchPager = new SPager(recsCount, pg, pageSize)
+            {
+                Controller = "Shipment",
+                Action = "AllData",
+                SearchText = SearchText
+            };
+
+            ViewBag.SearchPager = SearchPager;
+
+            return View(retProducts);
         }
 
     }
