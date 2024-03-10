@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce_MVC.ViewModels
 {
@@ -10,6 +11,7 @@ namespace E_Commerce_MVC.ViewModels
 		public decimal Price { get; set; }
 		public int Stock { get; set; }
 		public string Image { get; set; }
-		public int CategoryId { get; set; }
+        [Display(Name = "Categgory")]
+        public int CategoryId { get; set; }
 	}
 }

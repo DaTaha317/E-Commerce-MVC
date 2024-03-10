@@ -13,6 +13,8 @@ namespace E_Commerce_MVC.Models
         public string State { get;set; } 
         
         public string Country { get; set; }
+        [Display(Name = "Zip Code")]
+
         public string ZipCode { get; set; }
         public ShipmentStatus Status { get; set; }
         [ForeignKey("customer")]

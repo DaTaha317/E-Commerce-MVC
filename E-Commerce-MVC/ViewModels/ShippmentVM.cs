@@ -20,6 +20,7 @@ namespace E_Commerce_MVC.ViewModels
         [Required(ErrorMessage = "Email Address is required")] // emailValidator
 		[Remote("emailValidator", "ClientSideValidation", ErrorMessage = "enter a valid email")]
 		[EmailAddress(ErrorMessage = "You should provide a valid email address")]
+        [Display(Name = "Email")]
         public string EmailAddress { get; set; }
 
 
@@ -38,6 +39,8 @@ namespace E_Commerce_MVC.ViewModels
 
         [Required]
         [StringLength(5,MinimumLength = 5,ErrorMessage = "zip code should be 5 numbers")]
+        [Display(Name = "Zip Code")]
+
         public string ZipCode { get; set; }
 
     }

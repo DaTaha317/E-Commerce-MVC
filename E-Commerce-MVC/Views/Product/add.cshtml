@@ -6,9 +6,9 @@
 
 <div class="container">
 
-    <h1>add</h1>
+    <h1>Add new product</h1>
 
-    <h4>ProductVM</h4>
+    
     <hr />
     <div class="row">
         <div class="col-md-4">
@@ -39,10 +39,11 @@
                     <input asp-for="Image" class="form-control" />
                     <span asp-validation-for="Image" class="text-danger"></span>
                 </div>
+                <label  class="control-label">Category</label>
 
-                <select asp-for="CategoryId" asp-items="ViewBag.SelectList"></select>
+                <select asp-for="CategoryId" asp-items="ViewBag.SelectList" class="form-control "></select>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="Create" class="btn btn-primary my-3" />
                 </div>
             </form>
         </div>
