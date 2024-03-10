@@ -19,7 +19,7 @@ namespace E_Commerce_MVC
             // IoC container Registerations
             builder.Services.AddDbContext<ECommerceDB>(options => 
                 options.UseLazyLoadingProxies()
-                .UseSqlServer(builder.Configuration.GetConnectionString("cs"))
+                .UseSqlServer(builder.Configuration.GetConnectionString("remote"))
             );
 
             builder.Services.AddIdentity<User, IdentityRole>(options =>
