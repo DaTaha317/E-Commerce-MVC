@@ -33,6 +33,19 @@ namespace E_Commerce_MVC.Repositories
             }
         }
 
+        public List<Shipment> GetAllById(string customerId, string SearchText = "")
+        {
+            var shipmentsById = context.Shipments.Where(u => u.CustomerId == customerId);
+            if (SearchText != "" && SearchText != null)
+            {
+                return shipmentsById.Where(p => p.Address.Contains(SearchText)).ToList();
+            }
+            else
+            {
+                return shipmentsById.ToList();
+            }
+        }
+
         public Shipment GetById(int id)
         {
             return context.Shipments.SingleOrDefault(sh => sh.Id == id);
