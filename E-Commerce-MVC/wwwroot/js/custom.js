@@ -59,7 +59,9 @@
 	        value = parseInt(quantityAmount.value, 10);
 
 	        value = isNaN(value) ? 0 : value;
-	        if (value > 0) value--;
+			if (value > 1) {
+				value--;
+			}
 
 	        quantityAmount.value = value;
 	    }
@@ -69,5 +71,7 @@
 	};
 	sitePlusMinus();
 
+	
 
 })()
+

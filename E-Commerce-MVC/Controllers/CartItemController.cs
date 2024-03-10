@@ -76,11 +76,18 @@ namespace E_Commerce_MVC.Controllers
 
         public IActionResult IncrementProduct(int productId)
         {
+
             // get id of the user
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             // get product wanted by user 
             CartItem cartItem = context.GetById(productId, userId);
+
+            if (cartItem == null)
+            {
+                return NoContent();
+            }
+
 
             // increment
             cartItem.Quantity += 1;
@@ -102,6 +109,11 @@ namespace E_Commerce_MVC.Controllers
 
             // get product wanted by user 
             CartItem cartItem = context.GetById(productId, userId);
+
+            if (cartItem == null || cartItem.Quantity <= 1)
+            {
+                return NoContent();
+            }
 
             // decrement
             cartItem.Quantity -= 1;
