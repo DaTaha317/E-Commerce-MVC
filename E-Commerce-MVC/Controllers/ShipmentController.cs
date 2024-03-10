@@ -1,4 +1,5 @@
-﻿using E_Commerce_MVC.Interfaces;
+﻿using Castle.Core.Resource;
+using E_Commerce_MVC.Interfaces;
 using E_Commerce_MVC.Models;
 using E_Commerce_MVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,8 @@ namespace E_Commerce_MVC.Controllers
             //List<Shipment> shipments = context.GetAll();
 
             ViewBag.countries = Data.Data.GetCountryList();
-            List<CartItem> cartItems = cartItemRepo.GetAll();
+            var CustomerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<CartItem> cartItems = cartItemRepo.GetCartItemsOfCustomer(CustomerId);
             ViewBag.Cart = cartItems;
             return View("Index");
         }
@@ -62,6 +64,12 @@ namespace E_Commerce_MVC.Controllers
             }
 
             return View("Index");
+        }
+
+        public IActionResult shipmentData()
+        {
+            List<Shipment> shipments = context.GetAll();
+            return View(shipments);
         }
 
     }

@@ -22,6 +22,12 @@
 		<div class="row mb-5">
 			@await Component.InvokeAsync("SearchBar", new { SearchPager = ViewBag.SearchPager })
 		</div>
+
+		@if (User.IsInRole("admin"))
+		{
+			<a class="btn btn-primary my-3" asp-action="add" >Add Product</a>
+		}
+
 		<div class="row">
 			@foreach (var item in Model)
 			{
