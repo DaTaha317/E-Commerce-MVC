@@ -34,8 +34,11 @@
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-					<li><a class="nav-link" asp-controller="Profile" asp-action="Index"><img src="/assets/images/user.svg"></a></li>
-					<li><a class="nav-link" asp-controller="CartItem" asp-action="Index"><img src="/assets/images/cart.svg"></a></li>
+					@if (User.Identity.IsAuthenticated == true)
+					{
+						<li><a class="nav-link" asp-controller="CartItem" asp-action="Index"><img src="/assets/images/cart.svg"></a></li>
+					}
+					
 				</ul>
 
 				@if (User.Identity.IsAuthenticated == false)
@@ -48,7 +51,10 @@
 
 				else
 				{
+					var name = User.Identity.Name;
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+
+						<li><a class="nav-link" asp-controller="Profile" asp-action="Index"><img src="/assets/images/user.svg">  @name</a></li>
 						<li><a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a></li>
 					</ul>
 				}
